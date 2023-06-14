@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import ApexCharts from 'apexcharts'
 import Chart from 'react-apexcharts'
+import moment from 'moment';
 
 const Apexchart = () => {
 
@@ -48,6 +49,28 @@ const Apexchart = () => {
           data: [],
         },
       ]);
+
+
+
+      
+const startDate = moment('13/06/2023 12:00:00', 'DD/MM/YYYY HH:mm:ss');
+const endDate = moment('13/06/2023 16:00:00', 'DD/MM/YYYY HH:mm:ss');
+
+const duration = moment.duration(endDate.diff(startDate));
+const minutes = duration.asMinutes();
+
+const datesAndTimes = [];
+
+
+for (let i = 0; i <= minutes; i++) {
+  const dateTime = startDate.clone().add(i, 'minutes');
+  const formattedTime = dateTime.format('DD/MM/YYYY HH:mm:ss');
+  const jsonObject = {
+    time: formattedTime,
+  };
+  datesAndTimes.push(jsonObject);
+}
+console.log(datesAndTimes)
     
       useEffect(() => {
         // Data to be displayed in the chart
@@ -6747,7 +6770,7 @@ const Apexchart = () => {
         ];
     
         // Extracting categories and data points from the data
-        const categories = data.map((item) => item.time);
+        const time = datesAndTimes.map((item) => item.time);
         const accData = data.map((item) => item.acc);
     
         // Update the chart options and series with the extracted data
@@ -6755,7 +6778,7 @@ const Apexchart = () => {
           ...prevOptions,
           xaxis: {
             ...prevOptions.xaxis,
-            categories: categories,
+            categories: time,
           },
         }));
     
@@ -6767,119 +6790,6 @@ const Apexchart = () => {
         ]);
       }, []);
     
-
-
-
-
-
-    // const [chartOptions, setChartOptions] = useState({
-       
-    //     chart: {
-    //       height: 350,
-    //       type: 'bar',
-    //             events: {
-    //     dataPointSelection: (event, chartContext, { dataPointIndex }) => {
-    //       const data = chartContext.w.config.series[0].data[dataPointIndex];
-    //       const ids = chartContext.w.config.series[0].ids[dataPointIndex];
-    //       const label = chartContext.w.config.series[0].label[dataPointIndex];
-    //       console.log('Label:', label);
-    //       console.log('Data:', data);
-    //       console.log('ids:', ids);
-    //     },
-    //  }
-    //     },
-    //     plotOptions: {
-    //       bar: {
-    //         borderRadius: 10,
-    //         columnWidth: '50%',
-    //       },
-    //     },
-    //     dataLabels: {
-    //       enabled: false,
-    //     },
-    //     stroke: {
-    //       width: 2,
-    //     },
-    //     grid: {
-    //       row: {
-    //         colors: ['#fff', '#f2f2f2'],
-    //       },
-    //     },
-    //     xaxis: {
-    //       labels: {
-    //         rotate: -45,
-    //       },
-    //       categories: [
-    //         'Apples',
-    //         'Oranges',
-    //         'Strawberries',
-    //         'Pineapples',
-    //         'Mangoes',
-    //         'Bananas',
-    //         'Blackberries',
-    //         'Pears',
-    //         'Watermelons',
-    //         'Cherries',
-    //         'Pomegranates',
-    //         'Tangerines',
-    //         'Papayas',
-    //       ],
-    //       tickPlacement: 'on',
-    //     },
-    //     yaxis: {
-    //       title: {
-    //         text: 'Servings',
-    //       },
-    //     },
-    //     fill: {
-    //     //   type: 'gradient',
-    //       gradient: {
-    //         // shade: 'light',
-    //         // type: 'horizontal',
-    //         // shadeIntensity: 0.25,
-    //         // gradientToColors: undefined,
-    //         // inverseColors: true,
-    //         // opacityFrom: 0.85,
-    //         // opacityTo: 0.85,
-    //         // stops: [50, 0, 100],
-    //       },
-    //     },
-    //   });
-    
-    //   const [chartSeries, setChartSeries] = useState([
-    //     {
-    //       name: 'Servings',
-    //       data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35],
-    //       ids: [424, 552, 412, 627, 222, 432, 221, 332, 452, 312, 827, 625, 325],
-    //       label :  [
-    //         'Apples',
-    //         'Oranges',
-    //         'Strawberries',
-    //         'Pineapples',
-    //         'Mangoes',
-    //         'Bananas',
-    //         'Blackberries',
-    //         'Pears',
-    //         'Watermelons',
-    //         'Cherries',
-    //         'Pomegranates',
-    //         'Tangerines',
-    //         'Papayas',
-    //       ]
-    //     },
-    //   ]);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
