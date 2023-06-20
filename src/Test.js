@@ -1354,6 +1354,7 @@ function Test() {
             zoom: {
               pan: {
                 enabled: true,
+                mode: "x",
               },
               zoom: {
                 animation: {
@@ -1412,6 +1413,7 @@ function Test() {
               zoom: {
                 pan: {
                   enabled: true,
+                  mode: "x",
                 },
                 zoom: {
                   animation: {
